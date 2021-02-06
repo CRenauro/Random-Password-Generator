@@ -9,4 +9,6 @@ When I answer each prompt, my input is validated.
 
 When all prompts are answered, a password is generated that meets the selected criteria.
 
-The password will appear in the central rectangle.
+The password will appear in the central rectangle.  
+
+https://crenauro.github.io/Random-Password-Generator/
