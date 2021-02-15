@@ -1,104 +1,108 @@
-//array of options
-var lowercase = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
-var uppercase = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
-var number = ['0','1','2','3','4','5','6','7','8','9'];
-var symbol = ['!','@','#','$','%','^','&','*','(',')','?','{','}','/',];
-var numArr = [''];
 
-// prompts questions when generate button is pushed - NOT WORKING
+var generateBtn = document.getElementById("generate");
 
-document.getElementById("generate").addEventListener('click', prompt);
+var numberStr = "1234567890";
+var specialCharStr = "!@#$%^&*(){}|[],./<>?";
+var upperCharStr = "ABCDEFGHIJKLMNOPQUVWXYZ";
+var lowerCharStr = upperCharStr.toLowerCase();
 
+var numberArr = numberStr.split("");
+var upperCharArr = upperCharStr.split("");
+var lowerCharArr = lowerCharStr.split("");
+var specialCharArr = specialCharStr.split("");
 
-//user passsord options - NOT WORKING
-function userpasswordOptions(){
+var passwordArr = [];
+var userChoicePoolArr = [];
+var userChoiceLength = [];
+
+generateBtn.addEventListener("click", writePassword);
+
+function generatePassword() {
   var passLength = parseInt(
-      prompt('How many characters would you like your password to contain?')
-  );
+          prompt('How many characters would you like your password to contain?')
+      );
+    
+      if (passLength < 8) {
+        alert('Password length must be at least 8 characters.')
+      };
 
-  if (isNaN(passLength) === true) {
-      alert('Password length must be provided as a number.')
-  };
-  
-  if (passLength < 8) {
-    alert('Password length must be at least 8 characters.')
-    return;
-  };
-  // check to make sure they chose between 8- 128 characters
-  console.log(passLength);
+      if (isNaN(passLength) === true) {
+          alert('Password length must be provided as a number.')
+      };
+
+      // check to make sure they chose between 8- 128 characters
+      console.log(passLength);
+
+  var includeNumbers = confirm("Include numerical characters?");
+  var includeSymbols = confirm("Include symbols?");
+  var includeUpper = confirm("Include uppercase characters?");
+  var includeLower = confirm("Include lowercase characters?");
+};
+
+for (var i = 0; i < numberArr.length; i++) {
+  userChoicePoolArr.push(numberArr[i]);
 }
+console.log("userChoicePoolArr: ", userChoicePoolArr);
 
+for (var i = 0; i < upperCharArr.length; i++) {
+  userChoicePoolArr.push(upperCharArr[i]);
+}
+console.log("userChoicePoolArr: ", userChoicePoolArr);
 
+for (var i = 0; i < lowerCharArr.length; i++) {
+  userChoicePoolArr.push(lowerCharArr[i]);
+}
+console.log("userChoicePoolArr: ", userChoicePoolArr);
 
-// prompt for what characters - WORKING
+for (var i = 0; i < specialCharArr.length; i++) {
+  userChoicePoolArr.push(specialCharArr[i]);
+}
+console.log("userChoicePoolArr: ", userChoicePoolArr);
 
-var includeNumbers = confirm("Include numerical characters?");
-var includeSymbols = confirm("Include symbols?");
-var includeUpper = confirm("Include uppercase characters?");
-var includeLower = confirm("Include lowercase characters?");
+// Using random method to create index to the pool for password
+for (var i = 0; i < userChoiceLength; i++) {
+  var index = Math.floor(Math.random() * userChoicePoolArr.length ) ;
+  passwordArr.push(userChoicePoolArr[index]);
+}
+console.log("passwordArr: ", passwordArr);
 
+// Making sure at least one char of user's choice is included
+// Provided user has selected numbers
+var indexNumbers = Math.floor(Math.random() * numberArr.length);
+var pwdIndex = 0;
+
+passwordArr[pwdIndex++] = numberArr[indexNumbers];
+
+// Provided user has selected uppercase chars
+var indexUppers = Math.floor(Math.random() * upperCharArr.length);
+passwordArr[pwdIndex++] = upperCharArr[indexUppers];
+
+// Provided user has selected lowercase chars
+var indexLowers = Math.floor(Math.random() * lowerCharArr.length);
+passwordArr[pwdIndex++] = lowerCharArr[indexLowers];
+
+// Provided user has selected special chars
+var indexSpecial = Math.floor(Math.random() * specialCharArr.length);
+passwordArr[pwdIndex++] = specialCharArr[indexSpecial];
+
+console.log("passwordArr: ", passwordArr);
 
 //object to store the user input
-function getInputValue(){
+function getInputValue() {
   // Selecting the input element and get its value 
   var inputVal = document.getElementById("password").value;
   
   // Displaying the value
   alert(inputVal);
-  return;
-}
+};
 
+TODO: // console log returns 4 char length password twice
+// password doesnt get written to box
+// prompts dont work anymore
 
-// function to randomize so that we can give the password  (will use math.random to generate that).
-var password = "" 
-// Pick a random number from numArr.
-
-const pick = numArr;
-
-console.log(pick);
-console.log(
-    numArr[Math.floor(Math.random() * numArr.length)]
-             );
-
-// an array w the results, an array for possible characters, 
-// and set an array for guarenteed characters (characters guarenteed for pw)
-
-get_random = function (list) {
-  return list[Math.floor((Math.random()*list.length))];
-} 
-
-get_random([]);
-
-console.log(Array.from('numArr'));
-
-// then we will creat a loop that goes through the results array
-// Once we push into a new array (results array), using join we will take the characters from results array and turn into a string
-var elements = ['lowercase', 'uppercase', 'numbers', 'symbols'];
-
-console.log(elements.join());
-
-
-console.log(elements.join(''));
-
-
-console.log(elements.join('-'));
-
-
-
-// After we turn into a string, we write the password 
-// to the page using(.value)
-
-var numArr = ['']; 
-console.log(Object.values(check));
-
-
-// Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
+  var passwordText = document.getElementById("password");
+  
+  passwordText.value = passwordArr;
 
-  passwordText.value = password;
-
-}
-
-
+};
