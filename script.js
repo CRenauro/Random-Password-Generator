@@ -12,64 +12,77 @@ var lowerCharArr = lowerCharStr.split("");
 var specialCharArr = specialCharStr.split("");
 
 var passwordArr = [];
-var userChoicePoolArr = [];
-var userChoiceLength = [];
+var userChoice = [];
+var lengthPassword = [];
 
-generateBtn.addEventListener("click", writePassword);
 
 function generatePassword() {
+  console.log("password");
   var passLength = parseInt(
-          prompt('How many characters would you like your password to contain?')
-      );
+    prompt('How many characters would you like your password to contain?')
+    );
     
-      if (passLength < 8) {
-        alert('Password length must be at least 8 characters.')
-      };
+    if (passLength < 8) {
+      alert('Password length must be at least 8 characters.')
+    };
+    
+    if (passLength > 128) {
+      alert('Password length must be no more than 128 characters')
+    };
 
-      if (isNaN(passLength) === true) {
-          alert('Password length must be provided as a number.')
-      };
+    if (isNaN(passLength) === true) {
+      alert('Password length must be provided as a number.')
+    };
+  
+    var includeNumbers = confirm("Include numerical characters?");
+    var includeUpper = confirm("Include uppercase characters?");
+    var includeLower = confirm("Include lowercase characters?");
+    var includeSymbols = confirm("Include special characters?");
 
-      // check to make sure they chose between 8- 128 characters
-      console.log(passLength);
+    if (includeNumbers === true) {
+      for (var i = 0; i < numberArr.length; i++) {
+        userChoice.push(numberArr[i]);
+      }
+      console.log("userChoice: ", userChoice);
+    }
 
-  var includeNumbers = confirm("Include numerical characters?");
-  var includeSymbols = confirm("Include symbols?");
-  var includeUpper = confirm("Include uppercase characters?");
-  var includeLower = confirm("Include lowercase characters?");
+    if (includeUpper === true) {
+      for (var i = 0; i < upperCharArr.length; i++) {
+        userChoice.push(upperCharArr[i]);
+      }
+      console.log("userChoice: ", userChoice);
+    }
+    
+    if (includeLower === true) {
+      for (var i = 0; i < lowerCharArr.length; i++) {
+        userChoice.push(lowerCharArr[i]);
+      }
+    console.log("userChoice: ", userChoice);
+    }
+    
+    if (includeSymbols === true) {
+      for (var i = 0; i < specialCharArr.length; i++) {
+        userChoice.push(specialCharArr[i]);
+      }
+    console.log("userChoice: ", userChoice);
+    }
 };
+  
+generateBtn.addEventListener("click", generatePassword);
 
-for (var i = 0; i < numberArr.length; i++) {
-  userChoicePoolArr.push(numberArr[i]);
-}
-console.log("userChoicePoolArr: ", userChoicePoolArr);
 
-for (var i = 0; i < upperCharArr.length; i++) {
-  userChoicePoolArr.push(upperCharArr[i]);
-}
-console.log("userChoicePoolArr: ", userChoicePoolArr);
 
-for (var i = 0; i < lowerCharArr.length; i++) {
-  userChoicePoolArr.push(lowerCharArr[i]);
-}
-console.log("userChoicePoolArr: ", userChoicePoolArr);
-
-for (var i = 0; i < specialCharArr.length; i++) {
-  userChoicePoolArr.push(specialCharArr[i]);
-}
-console.log("userChoicePoolArr: ", userChoicePoolArr);
 
 // Using random method to create index to the pool for password
-for (var i = 0; i < userChoiceLength; i++) {
-  var index = Math.floor(Math.random() * userChoicePoolArr.length ) ;
-  passwordArr.push(userChoicePoolArr[index]);
+for (var i = 0; i < lengthPassword; i++) {
+  var index = Math.floor(Math.random() * userChoice.length);
+  passwordArr.push(userChoice[index]);
 }
-console.log("passwordArr: ", passwordArr);
 
 // Making sure at least one char of user's choice is included
 // Provided user has selected numbers
 var indexNumbers = Math.floor(Math.random() * numberArr.length);
-var pwdIndex = 0;
+var pwdIndex = [];
 
 passwordArr[pwdIndex++] = numberArr[indexNumbers];
 
@@ -96,9 +109,6 @@ function getInputValue() {
   alert(inputVal);
 };
 
-TODO: // console log returns 4 char length password twice
-// password doesnt get written to box
-// prompts dont work anymore
 
 function writePassword() {
   var passwordText = document.getElementById("password");
