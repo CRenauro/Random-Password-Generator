@@ -14,7 +14,10 @@ body,
 
 body {
   font-family: sans-serif;
-  background-color: #f9fbfd;
+  background-image: url(./assets/birdofparadise.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .wrapper {
@@ -27,7 +30,7 @@ header {
   text-align: center;
   padding: 20px;
   padding-top: 0px;
-  color: hsl(206, 17%, 28%);
+  color: #ff8f07;
 }
 
 .card {
@@ -74,7 +77,7 @@ header {
 
 .btn {
   border: none;
-  background-color: hsl(360, 91%, 36%);
+  background-color: #5075bc;
   border-radius: 25px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 6px 0px rgba(0, 0, 0, 0.2) 0px 1px 1px
     0px;
@@ -88,14 +91,11 @@ header {
   cursor: pointer;
 }
 
-/* button[disabled] {
-  cursor: default;
-  background: #c0c7cf;
-} */
 
 .float-right {
   float: right;
 }
+
 
 #password {
   -webkit-appearance: none;
