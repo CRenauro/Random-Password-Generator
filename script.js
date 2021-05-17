@@ -16,14 +16,18 @@ var lengthPassword = 0;
 function generatePassword() {
   var passwordArr = [];
   console.log("password");
-  var passLength = parseInt(prompt("How many characters would you like your password to contain?"))
+  var passLength = parseInt(
+    prompt("How many characters would you like your password to contain?")
+  );
 
   if (passLength < 8) {
     alert("Password length must be at least 8 characters.");
+
   }
 
-  if (passLength < 128) {
+  if (passLength > 128) {
     alert("Password length must be no more than 128 characters.");
+
   }
 
   if (isNaN(passLength) === true) {
@@ -68,7 +72,7 @@ function generatePassword() {
     passwordArr.push(userChoice[index]);
   }
 
-  return (passwordArr.join(""))
+  return passwordArr.join("");
 }
 
 generateBtn.addEventListener("click", writePassword);
