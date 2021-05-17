@@ -11,23 +11,26 @@ var lowerCharArr = lowerCharStr.split("");
 var specialCharArr = specialCharStr.split("");
 
 var userChoice = [];
-var lengthPassword = 0;
 
 function generatePassword() {
+  var lengthPassword = 0;
+  console.log(lengthPassword);
+
   var passwordArr = [];
   console.log("password");
+
   var passLength = parseInt(
     prompt("How many characters would you like your password to contain?")
   );
 
   if (passLength < 8) {
     alert("Password length must be at least 8 characters.");
-
+    return "";
   }
 
   if (passLength > 128) {
     alert("Password length must be no more than 128 characters.");
-
+    return "";
   }
 
   if (isNaN(passLength) === true) {
