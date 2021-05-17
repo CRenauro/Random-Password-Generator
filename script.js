@@ -25,12 +25,14 @@ function generatePassword() {
 
   if (passLength < 8) {
     alert("Password length must be at least 8 characters.");
-    return "";
-  }
+    console.log(passLength);
+    return null;
+  };
+
 
   if (passLength > 128) {
     alert("Password length must be no more than 128 characters.");
-    return "";
+    return null;
   }
 
   if (isNaN(passLength) === true) {
